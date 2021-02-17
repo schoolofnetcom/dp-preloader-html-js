@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 120px;
+            height: 120px;
+            margin: -76px 0 0 -76px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }        
+        #main {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader"></div>
+    <main id="main" class="container">
+        <h1>Lorem ipsum</h1>
+        <p>
+            Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+        </p>
+    </main>
+
+    <script>
+        const ready = (cb) => {
+            const timer = setInterval(isReady, 1000);
+
+            function isReady() {
+                if (document.body !== undefined) {
+                    clearInterval(timer);
+                    cb.call(this);
+                }
+            }
+        };
+
+        ready(() => {
+            const display = (id, value) => document.querySelector(`#${id}`).style.display = value ? 'block' : 'none';
+            display('main', true);
+            display('loader', false);
+        });
+    </script>
+</body>
+</html>
